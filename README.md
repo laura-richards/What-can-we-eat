@@ -92,5 +92,7 @@ Our first job is getting something showing on the front end from our database. H
   - If you haven't already, CSS!
 </details>
 
+Note for me: if using API keys or other secrets, dont forget to follow the .env files bit of the dokku guide repo
+
 ---
 [Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=my-fullstack-collection-query)
