@@ -9,8 +9,8 @@ export default function Home() {
   if (isLoading) return <p>Loading... </p>
 
   return (
-    <section>
-      <h2 className="page-title">Food Ideas:</h2>
+    <section className="section">
+      <h2>Food Ideas:</h2>
       <ul>
         {meals?.map((meal) => (
           <li key={meal.title}>
