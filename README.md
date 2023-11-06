@@ -94,5 +94,12 @@ Our first job is getting something showing on the front end from our database. H
 
 Note for me: if using API keys or other secrets, dont forget to follow the .env files bit of the dokku guide repo
 
+todo: 
+add who submitted the recipe
+protect routes to recipes 
+add option for comments 
+add option for ratings
+add meal planning
+
 ---
 [Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=my-fullstack-collection-query)
