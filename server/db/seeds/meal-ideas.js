@@ -8,20 +8,22 @@ export async function seed(knex) {
     {
       title: 'Nachos',
       description: 'Mince, corn chips, cheese, whats not to love',
-      recipe_url: '',
-      photo: '',
+      recipe_url:
+        'https://foodess.com/easy-healthy-3-ingredient-banana-pancakes-recipe/',
+      submitted_by: 'Nat KN',
     },
     {
       title: 'Pancakes',
       description: 'fluffy fluffy goodness',
-      recipe_url: '',
-      photo: '',
+      recipe_url:
+        'https://foodess.com/easy-healthy-3-ingredient-banana-pancakes-recipe/',
+      submitted_by: 'Charlotte',
     },
     {
       title: 'Cereal',
       description: "Natalie's favourite go to",
       recipe_url: '',
-      photo: '',
+      submitted_by: 'Natalie',
     },
   ])
 }
