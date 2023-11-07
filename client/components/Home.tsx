@@ -6,15 +6,15 @@ export default function Home() {
   const { data: meals, isError, isLoading } = useQuery(['meals'], getMealList)
 
   if (isError) return <p>error getting ideas</p>
-  if (isLoading) return <p>Loading... </p>
-
+  if (!meals || isLoading) return <p>Loading... </p>
+  
   return (
     <section className="section">
       <h2>Food Ideas:</h2>
       <ul>
-        {meals?.map((meal) => (
-          <li key={meal.title}>
-            <Link to={`/${meal.title}`}>{meal.title}</Link>
+        {meals.map((meal) => (
+          <li key={meal.id}>
+            <Link to={`/${meal.id}`}>{meal.title}</Link>
           </li>
         ))}
       </ul>

@@ -5,6 +5,8 @@ import express from 'express'
 import mealRoutes from './routes/mealRoutes.ts'
 
 const server = express()
+
+
 server.use(express.json())
 server.use('/api/v1/meals', mealRoutes)
 
