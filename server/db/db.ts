@@ -14,6 +14,12 @@ export async function getAllMealIdeas(db = connection): Promise<Meal[]> {
   return db('meal-ideas').select(...camelColumns)
 }
 
+//get individual meal  
+export async function getMealIdea(id: Number, db = connection): Promise<Meal[]> {
+  return db('meal-ideas').where({ id }).select(...camelColumns).first()
+}
+
+
 //add a meal 
 export async function addAMeal(newMeal: NewMeal, db = connection): Promise<Meal> {
   const mealSnakeCase: MealSnakeCase = { title: newMeal.title, description: newMeal.description, recipe_url: newMeal.recipeUrl, submitted_by: newMeal.submittedBy}

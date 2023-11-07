@@ -14,6 +14,25 @@ router.get('/', async (req, res) => {
   }
 })
 
+//GET /api/v1/meals/:id
+router.get('/:id', async (req, res) => {
+  
+    const id = Number(req.params.id)
+
+    if (!id) {
+    console.error('No valid id')
+    return res.status(400).send('Bad request')
+    } 
+
+  try {
+    const meal = await db.getMealIdea(id)
+    res.json({meal})
+  } catch(error) {
+    console.error(error)
+    res.status(500).send('Something went wrong')
+  }
+})
+
 // Post /api/v1/meals
 router.post('/', async (req, res) => {
   const  newMeal  = req.body 
