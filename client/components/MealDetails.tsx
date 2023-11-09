@@ -69,7 +69,7 @@ function MealDetails() {
       <p>{meal.description}</p>
       <p>
         Find recipe here:
-        <a href={meal.recipeUrl} target="_blank">
+        <a href={meal.recipeUrl} target="_blank" rel="noreferrer">
           {meal.recipeUrl}
         </a>
       </p>

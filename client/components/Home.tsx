@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { getMealList } from '../apis/mealApi.tsx'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Home() {
+  const navigate = useNavigate()
   const { data: meals, isError, isLoading } = useQuery(['meals'], getMealList)
 
   if (isError) return <p>error getting ideas</p>
@@ -20,6 +21,7 @@ export default function Home() {
           </li>
         ))}
       </ul>
+      <button onClick={() => {navigate('/addMeal')}}>Add an idea</button>
     </section>
   )
 }

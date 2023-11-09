@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function Nav() {
   return (
     <nav
@@ -5,7 +7,8 @@ function Nav() {
       role="navigation"
       aria-label="main navigation"
     >
-      nav to come here
+      <Link to='/'>Home</Link>
+      
     </nav>
   )
 }
