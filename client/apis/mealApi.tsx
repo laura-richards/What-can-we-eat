@@ -18,3 +18,11 @@ export async function getMealDetails(id: number) {
   }
   return res.body.meal
 }
+
+export async function updateMeal({id, newMeal}) {
+  const res = await request.put(`${rootURL}/${id}`).send(newMeal)
+  if (res.status !== 200) {
+    throw new Error('failed to update meal idea')
+  }
+  return res.body.updatedMeal
+}
