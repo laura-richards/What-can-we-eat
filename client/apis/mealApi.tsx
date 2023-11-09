@@ -28,5 +28,9 @@ export async function updateMeal({id, newMeal}) {
 }
 
 export async function deleteMeal(id: number) {
-  console.log(`tried to delete ${id}`)
+  const res = await request.delete(`${rootURL}/${id}`)
+  if (res.status !== 200) {
+    throw new Error('failed to delete meal idea')
+  }
+  return res.body
 }
