@@ -26,3 +26,7 @@ export async function updateMeal({id, newMeal}) {
   }
   return res.body.updatedMeal
 }
+
+export async function deleteMeal(id: number) {
+  console.log(`tried to delete ${id}`)
+}
