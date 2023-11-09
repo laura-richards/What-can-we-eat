@@ -36,8 +36,7 @@ router.get('/:id', async (req, res) => {
 // Post /api/v1/meals
 router.post('/', async (req, res) => {
   const  newMeal  = req.body 
-  console.log(`routes`, newmeal)
-  
+    
   if (!newMeal) {
     console.error('No meal')
     return res.status(400).send('Bad request')

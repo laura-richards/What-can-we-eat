@@ -15,6 +15,7 @@ function MealDetails() {
   
   const queryClient = useQueryClient()
   const navigate = useNavigate()
+  
   const updateMutation = useMutation(updateMeal, {
     onSuccess: async () => {
       queryClient.invalidateQueries(['meal', id])

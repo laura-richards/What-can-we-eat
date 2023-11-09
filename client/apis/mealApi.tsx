@@ -34,3 +34,8 @@ export async function deleteMeal(id: number) {
   }
   return res.body
 }
+
+export async function addAMeal(newMeal: newMeal) {
+  const res = await request.post(`${rootURL}`).send(newMeal) 
+  return res.body.newMeal
+}
