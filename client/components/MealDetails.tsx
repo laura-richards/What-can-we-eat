@@ -53,14 +53,14 @@ function MealDetails() {
     setForm({ ...form, [name]: value })
   }
 
-  const handleUpdate = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleUpdate = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     const newMeal = { ...form }
     updateMutation.mutate({ id, newMeal })
     setEditing(!editing)
   }
 
-  const handleDelete = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     deleteMutation.mutate(numberId)
     navigate('/')
