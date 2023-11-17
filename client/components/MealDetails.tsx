@@ -12,10 +12,10 @@ function MealDetails() {
     isLoading,
     isError,
   } = useQuery(['meal', id], () => getMealDetails(numberId))
-  
+
   const queryClient = useQueryClient()
   const navigate = useNavigate()
-  
+
   const updateMutation = useMutation(updateMeal, {
     onSuccess: async () => {
       queryClient.invalidateQueries(['meal', id])
@@ -25,9 +25,9 @@ function MealDetails() {
   const deleteMutation = useMutation(deleteMeal, {
     onSuccess: async () => {
       queryClient.invalidateQueries(['meals'])
-    }
+    },
   })
-   
+
   const initialFormData = {
     title: '',
     description: '',
@@ -39,25 +39,30 @@ function MealDetails() {
   const [form, setForm] = useState(initialFormData)
 
   const handleEditingChange = () => {
-    setForm({title: meal.title, description: meal.description, recipeUrl: meal.recipeUrl, submittedBy: meal.submittedBy })
+    setForm({
+      title: meal.title,
+      description: meal.description,
+      recipeUrl: meal.recipeUrl,
+      submittedBy: meal.submittedBy,
+    })
     setEditing(!editing)
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
-    setForm({...form, [name]: value})
+    setForm({ ...form, [name]: value })
   }
 
-  const handleUpdate = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleUpdate = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    const newMeal = {...form}     
-    updateMutation.mutate({id, newMeal})
+    const newMeal = { ...form }
+    updateMutation.mutate({ id, newMeal })
     setEditing(!editing)
   }
 
   const handleDelete = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    deleteMutation.mutate(id)
+    deleteMutation.mutate(numberId)
     navigate('/')
   }
 
@@ -77,15 +82,15 @@ function MealDetails() {
       <p>Submitted by: {meal.submittedBy}</p>
       {!editing ? (
         <div>
-        <button onClick={handleEditingChange}>Edit idea</button>
-        <button onClick={handleDelete}>Delete idea</button>
+          <button onClick={handleEditingChange}>Edit idea</button>
+          <button onClick={handleDelete}>Delete idea</button>
         </div>
       ) : (
         <form>
           <label htmlFor="title">Title:</label>
           <input
             type="text"
-            id='title'
+            id="title"
             name="title"
             value={form.title}
             onChange={handleChange}
@@ -94,7 +99,7 @@ function MealDetails() {
           <label htmlFor="description">Description:</label>
           <input
             type="text"
-            id= 'description'
+            id="description"
             name="description"
             value={form.description}
             onChange={handleChange}
@@ -103,16 +108,16 @@ function MealDetails() {
           <label htmlFor="recipeUrl">Recipe Url:</label>
           <input
             type="text"
-            id= 'recipeUrl'
+            id="recipeUrl"
             name="recipeUrl"
             value={form.recipeUrl}
             onChange={handleChange}
           />
           <br />
           <label htmlFor="submittedBy">Submitted by:</label>
-            <input
+          <input
             type="text"
-            id= 'submittedBy'
+            id="submittedBy"
             name="submittedBy"
             value={form.submittedBy}
             onChange={handleChange}
