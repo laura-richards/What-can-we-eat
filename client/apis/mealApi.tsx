@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Meal } from '../../models/mealModels'
+import { Meal, NewMeal, UpdateMealParams } from '../../models/mealModels'
 
 const rootURL = '/api/v1/meals'
 
@@ -19,7 +19,7 @@ export async function getMealDetails(id: number) {
   return res.body.meal
 }
 
-export async function updateMeal({id, newMeal}) {
+export async function updateMeal({ id, newMeal }: UpdateMealParams) {
   const res = await request.put(`${rootURL}/${id}`).send(newMeal)
   if (res.status !== 200) {
     throw new Error('failed to update meal idea')
@@ -35,7 +35,7 @@ export async function deleteMeal(id: number) {
   return res.body
 }
 
-export async function addAMeal(newMeal: newMeal) {
-  const res = await request.post(`${rootURL}`).send(newMeal) 
+export async function addAMeal(newMeal: NewMeal) {
+  const res = await request.post(`${rootURL}`).send(newMeal)
   return res.body.newMeal
 }

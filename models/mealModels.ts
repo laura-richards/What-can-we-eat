@@ -1,16 +1,18 @@
-export interface Meal {
-  id: number
+export interface NewMeal {
   title: string
   description: string
   recipeUrl: string
   submittedBy: string
 }
 
-export interface NewMeal {
-  title: string
-  description: string
-  recipeUrl: string
-  submittedBy: string
+
+export interface Meal extends NewMeal {
+  id: number
+}
+
+export type UpdateMealParams = {
+  id: number,
+  newMeal: NewMeal
 }
 
 export interface MealSnakeCase {
