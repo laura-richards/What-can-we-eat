@@ -1,32 +1,14 @@
-import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getMealDetails } from '../apis/mealApi'
 import { useState } from 'react'
-import { updateMeal, deleteMeal } from '../apis/mealApi.tsx'
+import { useMeal, useMeals } from '../hooks/useMeal'
 
 function MealDetails() {
   const { id } = useParams()
-  const numberId = Number(id)
-  const {
-    data: meal,
-    isLoading,
-    isError,
-  } = useQuery(['meal', id], () => getMealDetails(numberId))
-
-  const queryClient = useQueryClient()
+  const numId = Number(id)
+  const { data: meal, isLoading, isError } = useMeal(numId)
+  const mealUpdate = useMeal(numId)
+  const meals = useMeals()
   const navigate = useNavigate()
-
-  const updateMutation = useMutation(updateMeal, {
-    onSuccess: async () => {
-      queryClient.invalidateQueries(['meal', id])
-    },
-  })
-
-  const deleteMutation = useMutation(deleteMeal, {
-    onSuccess: async () => {
-      queryClient.invalidateQueries(['meals'])
-    },
-  })
 
   const initialFormData = {
     title: '',
@@ -56,13 +38,13 @@ function MealDetails() {
   const handleUpdate = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     const newMeal = { ...form }
-    updateMutation.mutate({ id, newMeal })
+    mealUpdate.update.mutate({ numId, newMeal })
     setEditing(!editing)
   }
 
   const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    deleteMutation.mutate(numberId)
+    meals.delete.mutate(numId)
     navigate('/')
   }
 

@@ -19,3 +19,8 @@ export interface MealSnakeCase {
   recipe_url: string
   submitted_by: string
 }
+
+export type UpdateMealParams = {
+  numId: number
+  newMeal: NewMeal
+}
