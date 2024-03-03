@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getMealList } from '../apis/mealApi.tsx'
+import { getMealList } from '../apis/mealApi.ts'
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function Home() {
@@ -21,7 +21,13 @@ export default function Home() {
           </li>
         ))}
       </ul>
-      <button onClick={() => {navigate('/addMeal')}}>Add an idea</button>
+      <button
+        onClick={() => {
+          navigate('/addMeal')
+        }}
+      >
+        Add an idea
+      </button>
     </section>
   )
 }

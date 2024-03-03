@@ -7,8 +7,11 @@ function Nav() {
       role="navigation"
       aria-label="main navigation"
     >
-      <Link to='/'>Home</Link>
-      
+      <Link to="/">Home</Link>
+      <br />
+      <Link to="/addMeal">Add a Meal</Link>
+      <br />
+      <Link to="/">My Meals</Link>
     </nav>
   )
 }

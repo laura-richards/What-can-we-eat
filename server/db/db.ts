@@ -11,7 +11,7 @@ const camelColumns = [
 
 //get all meal ideas
 export async function getAllMealIdeas(db = connection): Promise<Meal[]> {
-  return db('meal-ideas').select(...camelColumns)
+  return db('meal_ideas').select(...camelColumns)
 }
 
 //get individual meal
@@ -19,7 +19,7 @@ export async function getMealIdea(
   id: number,
   db = connection
 ): Promise<Meal[]> {
-  return db('meal-ideas')
+  return db('meal_ideas')
     .where({ id })
     .select(...camelColumns)
     .first()
@@ -36,7 +36,7 @@ export async function addAMeal(
     recipe_url: newMeal.recipeUrl,
     submitted_by: newMeal.submittedBy,
   }
-  return db('meal-ideas')
+  return db('meal_ideas')
     .insert(mealSnakeCase)
     .returning(camelColumns)
     .then((insertedEntries) => insertedEntries[0])
@@ -54,7 +54,7 @@ export async function updateMeal(
     recipe_url: updatedMeal.recipeUrl,
     submitted_by: updatedMeal.submittedBy,
   }
-  return db('meal-ideas')
+  return db('meal_ideas')
     .where({ id })
     .update(mealSnakeCase)
     .returning(camelColumns)
@@ -63,5 +63,5 @@ export async function updateMeal(
 
 //delete a meal
 export async function deleteMeal(id: number, db = connection) {
-  return db('meal-ideas').where({ id }).delete()
+  return db('meal_ideas').where({ id }).delete()
 }
