@@ -3,10 +3,18 @@ import { useMeals } from '../hooks/useMeal.ts'
 
 export function Register() {
   const meals = useMeals()
-  console.log(meals.data)
+  // write code to use meals to populate list of meals
+  const mealNum = meals?.data?.length || 0
+  const mealOptions = []
+  for (let i = mealNum - 3; i < mealNum; i++) {
+    mealOptions.push(meals?.data?.[i])
+  }
+  console.log(mealOptions)
+
   const initialFormData = {
     name: '',
     userName: '',
+    meal: '',
   }
 
   const [form, setForm] = useState(initialFormData)
@@ -43,13 +51,43 @@ export function Register() {
             value={form.userName}
             onChange={handleChange}
           />
-          <h3>Select some meals to get you started:</h3>
-          <label htmlFor="pancakes">Pancakes</label>
-          <input name="pancakes" id="pancakes" type="checkbox" />
-          <label htmlFor="nachos">Nachos</label>
-          <input name="nachos" id="nachos" type="checkbox" />
-          <label htmlFor="cereal">Cereal</label>
-          <input name="cereal" id="cereal" type="checkbox" />
+          <div>
+            {mealOptions.length === 3 ? (
+              <div>
+                <h3>Select a meal to get you started:</h3>
+                <label htmlFor={mealOptions[0]?.title}>
+                  {mealOptions[0]?.title}
+                </label>
+                <input
+                  name="meal"
+                  id={mealOptions[0]?.title}
+                  type="radio"
+                  value={mealOptions[0]?.id}
+                  onChange={handleChange}
+                />
+                <label htmlFor={mealOptions[1]?.title}>
+                  {mealOptions[1]?.title}
+                </label>
+                <input
+                  name="meal"
+                  id={mealOptions[1]?.title}
+                  type="radio"
+                  value={mealOptions[1]?.id}
+                  onChange={handleChange}
+                />
+                <label htmlFor={mealOptions[2]?.title}>
+                  {mealOptions[2]?.title}
+                </label>
+                <input
+                  name="meal"
+                  id={mealOptions[2]?.title}
+                  type="radio"
+                  value={mealOptions[2]?.id}
+                  onChange={handleChange}
+                />{' '}
+              </div>
+            ) : null}
+          </div>
           <button>Register</button>
         </form>
       </div>
