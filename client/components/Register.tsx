@@ -12,7 +12,7 @@ export function Register() {
 
   const initialFormData = {
     name: '',
-    userName: '',
+    username: '',
     email: '',
     meal: '',
   }
@@ -44,12 +44,12 @@ export function Register() {
               value={form.name}
               onChange={handleChange}
             />
-            <label htmlFor="userName">Username:</label>
+            <label htmlFor="username">Username:</label>
             <input
-              name="userName"
-              id="userName"
+              name="username"
+              id="username"
               type="text"
-              value={form.userName}
+              value={form.username}
               onChange={handleChange}
             />
             <label htmlFor="email">Email:</label>
@@ -57,7 +57,7 @@ export function Register() {
               name="email"
               id="email"
               type="email"
-              value={form.userName}
+              value={form.email}
               onChange={handleChange}
             />
             <div>
