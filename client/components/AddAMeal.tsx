@@ -1,7 +1,8 @@
-import { useQueryClient, useMutation } from '@tanstack/react-query'
+// import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { addAMeal } from '../apis/mealApi.ts'
+import { useMeals } from '../hooks/useMeal'
+// import { addAMeal } from '../apis/mealApi.ts'
 
 export default function AddAMeal() {
   const initialFormData = {
@@ -10,16 +11,17 @@ export default function AddAMeal() {
     recipeUrl: '',
     submittedBy: '',
   }
+  const meals = useMeals()
 
   const [form, setForm] = useState(initialFormData)
   const navigate = useNavigate()
-  const queryClient = useQueryClient()
+  // const queryClient = useQueryClient()
 
-  const addMutation = useMutation(addAMeal, {
-    onSuccess: async () => {
-      queryClient.invalidateQueries(['meals'])
-    },
-  })
+  // const addMutation = useMutation(addAMeal, {
+  //   onSuccess: async () => {
+  //     queryClient.invalidateQueries(['meals'])
+  //   },
+  // })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -29,7 +31,8 @@ export default function AddAMeal() {
   const handleAdd = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const newMeal = { ...form }
-    addMutation.mutate(newMeal)
+    // addMutation.mutate(newMeal)
+    meals.add.mutate(newMeal)
     navigate('/')
   }
 
