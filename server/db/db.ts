@@ -1,5 +1,6 @@
 import connection from './connection.ts'
 import { Meal, MealSnakeCase, NewMeal } from '../../models/mealModels.ts'
+import { NewLikedRecipe, NewUser } from '../../models/userModels.ts'
 
 const camelColumns = [
   'id',
@@ -8,6 +9,8 @@ const camelColumns = [
   'recipe_url as recipeUrl',
   'submitted_by as submittedBy',
 ]
+
+const camelJoin = ['id', 'user_id as userId', 'meal_id as mealId']
 
 //get all meal ideas
 export async function getAllMealIdeas(db = connection): Promise<Meal[]> {
@@ -64,4 +67,20 @@ export async function updateMeal(
 //delete a meal
 export async function deleteMeal(id: number, db = connection) {
   return db('meal_ideas').where({ id }).delete()
+}
+
+//Add a user
+export function addUser(newUser: NewUser, db = connection) {
+  return db('users')
+    .insert(newUser)
+    .returning('id')
+    .then((addedUser) => addedUser[0])
+}
+
+//add a join
+export function addJoin(newJoin: NewLikedRecipe, db = connection) {
+  return db('liked_meals')
+    .insert(newJoin)
+    .returning(camelJoin)
+    .then((addedJoin) => addedJoin[0])
 }
