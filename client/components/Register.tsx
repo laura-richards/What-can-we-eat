@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useMeals } from '../hooks/useMeal.ts'
 
+//to do
+//check for if username already is in database
+//update back end for if not meal selected
 export function Register() {
   const meals = useMeals()
   // write code to use meals to populate list of meals
