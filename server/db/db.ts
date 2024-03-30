@@ -1,6 +1,11 @@
 import connection from './connection.ts'
 import { Meal, MealSnakeCase, NewMeal } from '../../models/mealModels.ts'
-import { NewLikedRecipe, NewUser } from '../../models/userModels.ts'
+import {
+  LikedRecipe,
+  NewLikedRecipe,
+  NewUser,
+  User,
+} from '../../models/userModels.ts'
 
 const camelColumns = [
   'id',
@@ -70,17 +75,24 @@ export async function deleteMeal(id: number, db = connection) {
 }
 
 //Add a user
-export function addUser(newUser: NewUser, db = connection) {
-  return db('users')
-    .insert(newUser)
-    .returning('id')
-    .then((addedUser) => addedUser[0])
+export async function addUser(
+  newUser: NewUser,
+  db = connection
+): Promise<User> {
+  const addedUser = await db('users').insert(newUser).returning('id')
+  return addedUser[0]
 }
 
 //add a join
-export function addJoin(newJoin: NewLikedRecipe, db = connection) {
-  return db('liked_meals')
-    .insert(newJoin)
-    .returning(camelJoin)
-    .then((addedJoin) => addedJoin[0])
+export async function addJoin(
+  newJoin: NewLikedRecipe,
+  db = connection
+): Promise<LikedRecipe> {
+  const addedJoin = await db('liked_meals').insert(newJoin).returning(camelJoin)
+  return addedJoin[0]
+}
+
+//get usernames
+export function getUsernames(db = connection) {
+  return db('users').select('username')
 }
