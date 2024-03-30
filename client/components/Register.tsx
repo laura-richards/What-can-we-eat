@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useMeals } from '../hooks/useMeal.ts'
+import { useUsers } from '../hooks/useUser.ts'
 
 //to do
 //check for if username already is in database
 //update back end for if not meal selected
 export function Register() {
   const meals = useMeals()
+  const users = useUsers()
   // write code to use meals to populate list of meals
   const mealNum = meals?.data?.length || 0
   const mealOptions = []
@@ -17,7 +19,7 @@ export function Register() {
     name: '',
     username: '',
     email: '',
-    meal: '',
+    meal: null,
   }
 
   const [form, setForm] = useState(initialFormData)
@@ -30,7 +32,7 @@ export function Register() {
   }
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('someone wanted to register for your app', form)
+    users.add.mutate(form)
   }
 
   return (
