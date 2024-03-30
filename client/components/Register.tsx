@@ -43,6 +43,7 @@ export function Register() {
               type="text"
               value={form.name}
               onChange={handleChange}
+              required
             />
             <label htmlFor="username">Username:</label>
             <input
@@ -51,6 +52,7 @@ export function Register() {
               type="text"
               value={form.username}
               onChange={handleChange}
+              required
             />
             <label htmlFor="email">Email:</label>
             <input
@@ -59,6 +61,7 @@ export function Register() {
               type="email"
               value={form.email}
               onChange={handleChange}
+              required
             />
             <div>
               {mealOptions.length === 3 ? (
