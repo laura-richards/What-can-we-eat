@@ -4,17 +4,24 @@ import { NewUser } from '../../models/userModels.ts'
 
 const router = express.Router()
 
-// Post /api/v1/user
-//this needs to add user to database and then add selecttted meal as a join also
+//Get api/v1/user
+router.get('/', async (req, res) => {
+  try {
+    const usernames = await db.getUsernames()
+    res.status(200).json({ usernames })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Error getting Usernames')
+  }
+})
 
+// Post /api/v1/user
 router.post('/', async (req, res) => {
   const newUser: NewUser = {
     name: req.body.name,
     email: req.body.email,
     username: req.body.username,
   }
-
-  // console.log(req.body.meal)
   if (!newUser) {
     console.error('No user')
     return res.status(400).send('Bad request')

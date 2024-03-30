@@ -5,6 +5,7 @@ import {
   NewLikedRecipe,
   NewUser,
   User,
+  Usernames,
 } from '../../models/userModels.ts'
 
 const camelColumns = [
@@ -93,6 +94,6 @@ export async function addJoin(
 }
 
 //get usernames
-export function getUsernames(db = connection) {
+export function getUsernames(db = connection): Promise<Usernames[]> {
   return db('users').select('username')
 }

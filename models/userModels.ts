@@ -20,3 +20,7 @@ export interface NewLikedRecipe {
 export interface LikedRecipe extends NewLikedRecipe {
   id: number
 }
+
+export interface Usernames {
+  username: string
+}
