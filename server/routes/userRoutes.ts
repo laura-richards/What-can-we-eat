@@ -22,12 +22,13 @@ router.post('/', async (req, res) => {
 
   try {
     const addedUser = await db.addUser(newUser)
-    const newJoin = {
-      user_id: addedUser.id,
-      meal_id: req.body.meal,
+    if (req.body.meal != null) {
+      const newJoin = {
+        user_id: addedUser.id,
+        meal_id: req.body.meal,
+      }
+      await db.addJoin(newJoin)
     }
-    const newJoined = await db.addJoin(newJoin)
-    console.log(newJoined)
     res.status(200).json({ addedUser })
   } catch (error) {
     console.error(error)
