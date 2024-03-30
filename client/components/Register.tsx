@@ -4,7 +4,7 @@ import { useUsers } from '../hooks/useUser.ts'
 
 //to do
 //check for if username already is in database
-//update back end for if not meal selected
+
 export function Register() {
   const meals = useMeals()
   const users = useUsers()
