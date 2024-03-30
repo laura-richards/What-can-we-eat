@@ -10,3 +10,8 @@ export async function addNewUser(newUser: NewUserDetails) {
   }
   return res.body
 }
+
+export async function getUsernames() {
+  const res = await request.get(rootURL)
+  return res.body
+}

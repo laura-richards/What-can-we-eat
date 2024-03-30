@@ -7,7 +7,9 @@ import {
 import * as api from '../apis/userApi.ts'
 
 export function useUsers() {
+  const query = useQuery(['users'], api.getUsernames)
   return {
+    ...query,
     add: useAddUser(),
   }
 }
@@ -15,9 +17,12 @@ export function useUsers() {
 function useUsersMutation<TData = unknown, TVariables = unknown>(
   mutationFn: MutationFunction<TData, TVariables>
 ) {
-  // const queryClient = useQueryClient()
+  const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    },
   })
   return mutation
 }
