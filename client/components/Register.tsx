@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMeals } from '../hooks/useMeal.ts'
 import { useUsers } from '../hooks/useUser.ts'
+import { Usernames } from '../../models/userModels.ts'
 
 //to do
 //check for if username already is in database
@@ -9,6 +10,7 @@ import { useUsers } from '../hooks/useUser.ts'
 export function Register() {
   const meals = useMeals()
   const users = useUsers()
+  // console.log(users.data)
   // write code to use meals to populate list of meals
   const mealNum = meals?.data?.length || 0
   const mealOptions = []
@@ -24,6 +26,8 @@ export function Register() {
   }
 
   const [form, setForm] = useState(initialFormData)
+  const [usernameExists, setUsernameExists] = useState(false)
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setForm((prevData) => ({
@@ -31,6 +35,24 @@ export function Register() {
       [name]: value,
     }))
   }
+
+  useEffect(() => {
+    const checkUsername = async () => {
+      const usernames = await users.data.usernames
+      console.log(usernames)
+      const match = usernames.filter(
+        (username: Usernames) => username.username === form.username
+      )
+      if (match.length > 0) {
+        setUsernameExists(true)
+      } else {
+        setUsernameExists(false)
+      }
+    }
+
+    checkUsername()
+  }, [form.username, users.data])
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     users.add.mutate(form)
@@ -60,6 +82,9 @@ export function Register() {
               onChange={handleChange}
               required
             />
+            {usernameExists ? (
+              <p className="warning">Username already exists</p>
+            ) : null}
             <label htmlFor="email">Email:</label>
             <input
               name="email"
