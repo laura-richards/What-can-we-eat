@@ -37,6 +37,7 @@ export default function AddAMeal() {
           name="title"
           value={form.title}
           onChange={handleChange}
+          required
         />
         <br />
         <label htmlFor="description">Description:</label>
@@ -46,6 +47,7 @@ export default function AddAMeal() {
           name="description"
           value={form.description}
           onChange={handleChange}
+          required
         />
         <br />
         <label htmlFor="recipeUrl">Recipe Url:</label>
