@@ -4,14 +4,13 @@ import { useUsers } from '../hooks/useUser.ts'
 import { Usernames } from '../../models/userModels.ts'
 
 //to do
-//check for if username already is in database
+
 //css
 
 export function Register() {
   const meals = useMeals()
   const users = useUsers()
-  // console.log(users.data)
-  // write code to use meals to populate list of meals
+
   const mealNum = meals?.data?.length || 0
   const mealOptions = []
   for (let i = mealNum - 3; i < mealNum; i++) {
