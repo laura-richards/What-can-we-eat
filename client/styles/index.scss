@@ -57,13 +57,21 @@ body {
 
 
 .section {
+  
   width: 80%;
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  color: black
- 
+  color: black;
+  }
+
+
+ .form {
+  display: flex;
+  justify-content: center;
+  align-items:center;
 }
+
 
 
 .meal-box {

@@ -59,40 +59,46 @@ export function Register() {
 
   return (
     <>
-      <div>
+      <div className="section">
         <h1>Register</h1>
-        <div>
+        <div className="form">
           <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Name:</label>
-            <input
-              name="name"
-              id="name"
-              type="text"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="username">Username:</label>
-            <input
-              name="username"
-              id="username"
-              type="text"
-              value={form.username}
-              onChange={handleChange}
-              required
-            />
-            {usernameExists ? (
-              <p className="warning">Username already exists</p>
-            ) : null}
-            <label htmlFor="email">Email:</label>
-            <input
-              name="email"
-              id="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
+            <div>
+              <label htmlFor="name">Name:</label>
+              <input
+                name="name"
+                id="name"
+                type="text"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="username">Username:</label>
+              <input
+                name="username"
+                id="username"
+                type="text"
+                value={form.username}
+                onChange={handleChange}
+                required
+              />
+              {usernameExists ? (
+                <p className="warning">Username already exists</p>
+              ) : null}
+            </div>
+            <div>
+              <label htmlFor="email">Email:</label>
+              <input
+                name="email"
+                id="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
             <div>
               {mealOptions.length === 3 ? (
                 <div>

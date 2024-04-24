@@ -68,46 +68,48 @@ function MealDetails() {
           <button onClick={handleDelete}>Delete idea</button>
         </div>
       ) : (
-        <form>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={form.title}
-            onChange={handleChange}
-          />
-          <br />
-          <label htmlFor="description">Description:</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-          />
-          <br />
-          <label htmlFor="recipeUrl">Recipe Url:</label>
-          <input
-            type="text"
-            id="recipeUrl"
-            name="recipeUrl"
-            value={form.recipeUrl}
-            onChange={handleChange}
-          />
-          <br />
-          <label htmlFor="submittedBy">Submitted by:</label>
-          <input
-            type="text"
-            id="submittedBy"
-            name="submittedBy"
-            value={form.submittedBy}
-            onChange={handleChange}
-          />
-          <br />
-          <button onClick={handleUpdate}>Save</button>
-          <button onClick={handleEditingChange}>Close</button>
-        </form>
+        <div className="form">
+          <form>
+            <label htmlFor="title">Title:</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+            />
+            <br />
+            <label htmlFor="description">Description:</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+            />
+            <br />
+            <label htmlFor="recipeUrl">Recipe Url:</label>
+            <input
+              type="text"
+              id="recipeUrl"
+              name="recipeUrl"
+              value={form.recipeUrl}
+              onChange={handleChange}
+            />
+            <br />
+            <label htmlFor="submittedBy">Submitted by:</label>
+            <input
+              type="text"
+              id="submittedBy"
+              name="submittedBy"
+              value={form.submittedBy}
+              onChange={handleChange}
+            />
+            <br />
+            <button onClick={handleUpdate}>Save</button>
+            <button onClick={handleEditingChange}>Close</button>
+          </form>
+        </div>
       )}
     </section>
   )
