@@ -95,5 +95,5 @@ export async function addJoin(
 
 //get usernames
 export function getUsernames(db = connection): Promise<Usernames[]> {
-  return db('users').select('username')
+  return db('users').select('username', 'email')
 }

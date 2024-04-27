@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { useMeals } from '../hooks/useMeal.ts'
 import { useUsers } from '../hooks/useUser.ts'
 import { Usernames } from '../../models/userModels.ts'
-
-//to do
-
-//css
+import { useAuth0 } from '@auth0/auth0-react'
+import { useNavigate } from 'react-router-dom'
 
 export function Register() {
+  const { user } = useAuth0()
+  const navigate = useNavigate()
   const meals = useMeals()
   const users = useUsers()
 
@@ -16,7 +16,6 @@ export function Register() {
   for (let i = mealNum - 3; i < mealNum; i++) {
     mealOptions.push(meals?.data?.[i])
   }
-
   const initialFormData = {
     name: '',
     username: '',
@@ -30,7 +29,9 @@ export function Register() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setForm((prevData) => ({
-      ...prevData,
+      ...prevData, 
+      auth0Id: user.id,
+      email: user.email,
       [name]: value,
     }))
   }
@@ -38,7 +39,6 @@ export function Register() {
   useEffect(() => {
     const checkUsername = async () => {
       const usernames = await users.data.usernames
-      console.log(usernames)
       const match = usernames.filter(
         (username: Usernames) => username.username === form.username
       )
@@ -52,9 +52,21 @@ export function Register() {
     checkUsername()
   }, [form.username, users.data])
 
+  useEffect(() => {
+    const checkForUser = async() => {
+      const userEmails = await users.data.usernames
+      const match = userEmails.filter((details) => details.email === user.email)
+      if (match.length > 0) {
+        navigate('/')
+      }
+    }
+    checkForUser()
+  }, [users.data, navigate, user])
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     users.add.mutate(form)
+    navigate('/')
   }
 
   return (
@@ -87,17 +99,6 @@ export function Register() {
               {usernameExists ? (
                 <p className="warning">Username already exists</p>
               ) : null}
-            </div>
-            <div>
-              <label htmlFor="email">Email:</label>
-              <input
-                name="email"
-                id="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
             </div>
             <div>
               {mealOptions.length === 3 ? (
